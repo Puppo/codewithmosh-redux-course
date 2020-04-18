@@ -1,5 +1,5 @@
 const path = require("path");
-const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -13,4 +13,9 @@ module.exports = {
     port: 9000,
   },
   devtool: "source-map",
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Redux Course",
+    }),
+  ],
 };
