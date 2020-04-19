@@ -13,20 +13,19 @@
 // console.log(store.getState());
 
 import configureStore from "./store/configureStore";
-import {
-  bugAdded,
-  bugRemoved,
-  bugResolved,
-  bugAssign,
-  getBugsByUser,
-} from "./store/bugs";
-import { projectAdd } from "./store/projects";
-import { userAdded } from "./store/users";
-import { error } from "./store/errors";
+import { assignBugToUser, loadBugs } from "./store/bugs";
 
 const store = configureStore();
 
-store.dispatch(error({ message: "Error exception" }));
+// store.dispatch(bugAdd({ description: "Bug 1" }));
+
+store.dispatch(loadBugs());
+
+setTimeout(() => {
+  store.dispatch(assignBugToUser(4, 2));
+}, 2000);
+
+// store.dispatch(error({ message: "Error exception" }));
 
 // store.dispatch(bugAdded({ description: "Bug 1" }));
 // store.dispatch(bugAdded({ description: "Bug 2" }));
