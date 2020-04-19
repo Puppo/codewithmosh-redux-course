@@ -1,8 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import bugs from "./bugs";
-import projects from "./projects";
+import { configureStore } from "@reduxjs/toolkit";
+import reducer from "./reducer";
 
-export default () =>
-  configureStore({
-    reducer: combineReducers({ projects, bugs }),
-  });
+export default () => configureStore({ reducer });

@@ -13,17 +13,30 @@
 // console.log(store.getState());
 
 import configureStore from "./store/configureStore";
-import * as bugActions from "./store/bugs";
-import * as projectActions from "./store/projects";
+import {
+  bugAdded,
+  bugRemoved,
+  bugResolved,
+  bugAssign,
+  getBugsByUser,
+} from "./store/bugs";
+import { projectAdd } from "./store/projects";
+import { userAdded } from "./store/users";
 
 const store = configureStore();
 
-store.subscribe(() => {
-  console.log("Store changed: ", store.getState());
-});
+store.dispatch(bugAdded({ description: "Bug 1" }));
+store.dispatch(bugAdded({ description: "Bug 2" }));
+store.dispatch(bugAdded({ description: "Bug 3" }));
+store.dispatch(bugResolved({ id: 1 }));
+store.dispatch(bugRemoved({ id: 1 }));
 
-store.dispatch(bugActions.bugAdded({ description: "Bug1" }));
-store.dispatch(bugActions.bugResolved({ id: 1 }));
-store.dispatch(bugActions.bugRemoved({ id: 1 }));
+store.dispatch(userAdded({ name: "User 1" }));
+store.dispatch(userAdded({ name: "User 2" }));
 
-store.dispatch(projectActions.projectAdd({ name: "Project 1" }));
+store.dispatch(projectAdd({ name: "Project 1" }));
+
+store.dispatch(bugAssign({ bugId: 3, userId: 1 }));
+
+console.log(store.getState());
+console.log(getBugsByUser(1)(store.getState()));
