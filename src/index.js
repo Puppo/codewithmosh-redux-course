@@ -22,21 +22,23 @@ import {
 } from "./store/bugs";
 import { projectAdd } from "./store/projects";
 import { userAdded } from "./store/users";
+import { error } from "./store/errors";
 
 const store = configureStore();
 
-store.dispatch(bugAdded({ description: "Bug 1" }));
-store.dispatch(bugAdded({ description: "Bug 2" }));
-store.dispatch(bugAdded({ description: "Bug 3" }));
-store.dispatch(bugResolved({ id: 1 }));
-store.dispatch(bugRemoved({ id: 1 }));
+store.dispatch(error({ message: "Error exception" }));
 
-store.dispatch(userAdded({ name: "User 1" }));
-store.dispatch(userAdded({ name: "User 2" }));
+// store.dispatch(bugAdded({ description: "Bug 1" }));
+// store.dispatch(bugAdded({ description: "Bug 2" }));
+// store.dispatch(bugAdded({ description: "Bug 3" }));
+// store.dispatch(bugResolved({ id: 1 }));
+// store.dispatch(bugRemoved({ id: 1 }));
 
-store.dispatch(projectAdd({ name: "Project 1" }));
+// store.dispatch(userAdded({ name: "User 1" }));
+// store.dispatch(userAdded({ name: "User 2" }));
+// store.dispatch(projectAdd({ name: "Project 1" }));
 
-store.dispatch(bugAssign({ bugId: 3, userId: 1 }));
+// store.dispatch(bugAssign({ bugId: 3, userId: 1 }));
 
-console.log(store.getState());
-console.log(getBugsByUser(1)(store.getState()));
+// console.log(store.getState());
+// console.log(getBugsByUser(1)(store.getState()));
