@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
@@ -20,11 +20,11 @@ const slice = createSlice({
     },
     bugResolved: (bugs, action) => {
       const index = bugs.list.findIndex((bug) => bug.id === action.payload.id);
-      bugs.list.splice(index, 1, action.payload);
+      bugs.list[index].resolved = true;
     },
     bugAssignedToUser: (bugs, action) => {
       const index = bugs.list.findIndex((bug) => bug.id === action.payload.id);
-      bugs.list.splice(index, 1, action.payload);
+      bugs.list[index].userId = action.payload.userId;
     },
     bugsRequested: (bugs, action) => {
       bugs.loading = true;
@@ -62,7 +62,7 @@ export const loadBugs = () => (dispatch, getState) => {
     return;
   }
 
-  dispatch(
+  return dispatch(
     apiCallBegan({
       url,
       onStart: bugsRequested.type,

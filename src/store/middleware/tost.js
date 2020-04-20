@@ -5,5 +5,5 @@ export default (store) => (next) => (action) => {
     console.log(`Tostify: ${action.payload.message}`);
   }
 
-  next(action);
+  return next(action);
 };
